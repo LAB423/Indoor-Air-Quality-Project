@@ -9,7 +9,6 @@ from flask_migrate import Migrate
 from flask_pymongo import PyMongo 
 from datetime import datetime
 app = Flask(__name__)
-
 # add mongo url to flask config, so that flask_pymongo can use it to make connection
 app.config['MONGO_URI'] = os.environ.get('DB')
 db = PyMongo(app, uri="mongodb://localhost:27017/test")

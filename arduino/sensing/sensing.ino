@@ -5,8 +5,8 @@
 #define DHTTYPE DHT22 
 DHT dht(DHTPIN, DHTTYPE);
 
-SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 5번 핀으로 지정
-int touchSensor = 5; 
+SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 3번 핀으로 지정
+int touchSensor = 5;                  // 터치센서 5번 핀으로 지정
 
 char buf[50];
 
