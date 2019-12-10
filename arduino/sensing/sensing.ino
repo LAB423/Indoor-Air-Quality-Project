@@ -6,7 +6,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 5번 핀으로 지정
-
+int touchSensor = 5; 
 
 char buf[50];
 
@@ -15,6 +15,7 @@ void setup() {
   Serial.begin(9600);   // 시리얼 통신을 시작, 통신 속도는 9600
   dht.begin();
   Serial1.begin(9600);        //RX, TX 통신 시작
+  pinMode(touchSensor, INPUT);  //touchsenseor 통신 시작
 }
 
 
@@ -28,6 +29,8 @@ void loop() {
   
   int sensorValue;
   sensorValue=analogRead(A2);
+
+  int touchValue = digitalRead(touchSensor); // touchsensor pin number = digit 2;
   
   float Vol, ppm;
   Vol=sensorValue*4.95/1023;
@@ -133,6 +136,16 @@ void loop() {
  }
 
   while(Serial1.available()) Serial1.read();
-  
+
+
+  if (touchValue == HIGH){      // 터치됨
+    Serial.print("touchSensor: ");
+    Serial.println("1 touch");
+  } 
+  else {                      //터치 안됨
+    Serial.print("touchSensor: ");
+    Serial.println("0 touch");
+  }
+
   delay(1000);     
 }
