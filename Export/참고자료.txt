@@ -1,5 +1,6 @@
-pymongo 로 데이터출력하기
 
+
+pymongo 로 데이터출력하기
 https://api.mongodb.com/python/current/tutorial.html#querying-for-more-than-one-document
 
 json to csv 변환하기
@@ -7,6 +8,9 @@ https://saralgyaan.com/posts/convert-json-to-csv-using-python/
 
 실제 데이터를 이용한 aggregation 실습 환경 구축
 https://www.fun-coding.org/mongodb_advanced2.html
+
+mongodb 센서데이터 처리  - 몽고db 홈페이지
+https://www.mongodb.com/presentations/mongodb-time-series-data-part-1-setting-stage-sensor-management
 
 
 현재 짠 코드  #몽고디비에서 json으로 데이터 출력
