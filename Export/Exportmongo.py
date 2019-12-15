@@ -1,18 +1,30 @@
 
 from pymongo import MongoClient
-from datetime import datetime
+import json
+from pprint import pprint
+import datetime
 
-client = MongoClient("mongodb://localhost:27017")
+if __name__ == '__main__':
+    client = MongoClient("mongodb://Lab423:3240@203.255.67.238:27017")
 
-db = client["test"]  # 
-collection_list = db.collection_names() # 테이블 출력하기 
-print(collection_list)
+    db = client["test"] 
+    collection_list = db.list_collection_names()
+    print(collection_list)
 
-ColletionOfExperiment = db["experiment"]  # experiment 테이블 출력하기
-ColletionOfSensor =  db["sensor"]
+    ColletionOfExperiment = db["experiment"]  # experiment table 
+    ColletionOfSensor =  db["sensor"]
+
+    # results = ColletionOfSensor.find({},limit=3)  #전체데이터조회
+    # for result in results:
+    #     pprint(result)
+
+    date1 = datetime.datetime.utcnow()-datetime.timedelta(minutes=15)
+    date1 = date1.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    print(date1)
+    for cursor in  ColletionOfSensor.find({'time':{"$lt":date1}}):
+        pprint(cursor)
 
 
-results = ColletionOfSensor.find()  #전체데이터조회
 
-# for result in results:
-#     print(result)
+# 하루날짜로 데이터 수집하기 
+#https://dba.stackexchange.com/questions/112179/date-range-query-for-past-24-hour-in-mongo-shell

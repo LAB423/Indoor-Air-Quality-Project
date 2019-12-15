@@ -1,0 +1,38 @@
+pymongo 로 데이터출력하기
+
+https://api.mongodb.com/python/current/tutorial.html#querying-for-more-than-one-document
+
+json to csv 변환하기
+https://saralgyaan.com/posts/convert-json-to-csv-using-python/
+
+실제 데이터를 이용한 aggregation 실습 환경 구축
+https://www.fun-coding.org/mongodb_advanced2.html
+
+
+현재 짠 코드  #몽고디비에서 json으로 데이터 출력
+
+from pymongo import MongoClient
+import json
+from pprint import pprint
+from datetime import datetime
+
+client = MongoClient("mongodb://Lab423:3240@203.255.67.238:27017")
+
+db = client["test"] 
+collection_list = db.list_collection_names()
+print(collection_list)
+
+
+ColletionOfExperiment = db["experiment"]  # experiment table 
+ColletionOfSensor =  db["sensor"]
+
+
+# results = ColletionOfSensor.find()  #전체데이터조회
+
+# for result in results:
+#     print(result)
+
+# 하루날짜로 데이터 수집하기 
+#https://dba.stackexchange.com/questions/112179/date-range-query-for-past-24-hour-in-mongo-shell
+
+
