@@ -3,7 +3,7 @@ from datetime import datetime
 import time
 time.sleep(1)
 
-ser = serial.Serial('COM15', 9600) # Serial(Comport,baudrate)
+ser = serial.Serial('/dev/ttyACM0', 9600) # Serial(Comport,baudrate)
 ser.flushInput()
 
 
@@ -29,7 +29,7 @@ while True:
 
         formData = {
             
-            'deviceName': "place2",
+            'deviceName': "place1",
             'sensorName': sensorName, 
             'sensorValue' : sensorValue,
             'time' : time
@@ -38,5 +38,5 @@ while True:
         print(formData)
 
     except:
-        print("오류 발생")
+        print("Error")
         continue 
