@@ -3,13 +3,14 @@ from datetime import datetime
 import time
 time.sleep(1)
 
-ser = serial.Serial('COM15', 9600) # Serial(Comport,baudrate)
+ser = serial.Serial('/dev/ttyACM0', 9600) # Serial(Comport,baudrate)
 ser.flushInput()
 
 
 while True:
     try:
         SVT = []
+        serial = ser.readline().decode()
         SVT = serial.split(",")
         sensorToList = [x.strip() for x in SVT if x.strip()]
         sensor =   [ oneSensor.split(":")  for oneSensor in sensorToList ]
@@ -29,7 +30,7 @@ while True:
 
         formData = {
             
-            'deviceName': "place2",
+            'deviceName': "place1",
             'sensorName': sensorName, 
             'sensorValue' : sensorValue,
             'time' : time

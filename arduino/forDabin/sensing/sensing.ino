@@ -57,33 +57,46 @@ void loop() {
 
   Serial.print("Humidity: ");        //습도
   Serial.print(h);
-  Serial.println(" % ");
-  
+  Serial.print(" % ");
+  Serial.print(",");
 
   Serial.print("Temperature: ");     //온도
   Serial.print(t);
-  Serial.println(" *C ");
-
+  Serial.print(" *C ");
+  Serial.print(",");
 
   Serial.print("Flame1:");              //Flame 1
   Serial.print(a1);  
+<<<<<<< HEAD:arduino/forDabin/sensing/sensing.ino
   Serial.println(" nm ");             
 
   Serial.print("Flame2:");              //Flame 2
   Serial.print(a2);  
   Serial.println(" nm ");                                 
+=======
+  Serial.print(" nm "); 
+  Serial.print(",");            
+
+  Serial.print("Flame2:");              //Flame 2
+  Serial.print(a2);  
+  Serial.print(" nm ");
+  Serial.print(",");                                 
+>>>>>>> 66e77f5432df531efe6b59c29c5067ff3a91534c:arduino/forDabin/sensing.ino
 
   Serial.print("Sensor Value: ");    //VOCs
   Serial.print(sensorValue);
-  Serial.println(" voc ");
+  Serial.print(" voc ");
+  Serial.print(",");
 
   Serial.print("Vol: ");
   Serial.print(Vol);
-  Serial.println(" vol ");
+  Serial.print(" vol ");
+  Serial.print(",");
 
   Serial.print("ppm: ");
   Serial.print(ppm);
-  Serial.println(" ppm ");
+  Serial.print(" ppm ");
+  Serial.print(",");
     
 
 
@@ -108,7 +121,8 @@ void loop() {
 
       Serial.print("PM 1.0: ");
       Serial.print(pmcf10);
-      Serial.println(" ug/m3 ");
+      Serial.print(" ug/m3 ");
+      Serial.print(",");
 
     }
 
@@ -118,8 +132,8 @@ void loop() {
 
       Serial.print("PM 2.5: ");
       Serial.print(pmcf25);
-      Serial.println(" ug/m3 ");
-
+      Serial.print(" ug/m3 ");
+      Serial.print(",");
     }
 
     else if(count == 9){           //pm 10의 수치값 계산
@@ -128,7 +142,8 @@ void loop() {
 
       Serial.print("PM 10: ");
       Serial.print(pmcf100);
-      Serial.println(" ug/m3 ");
+      Serial.print(" ug/m3 ");
+      Serial.print(",");
 
     }
 
@@ -140,12 +155,19 @@ void loop() {
 
   if (touchValue == HIGH){      // 터치됨
     Serial.print("touchSensor: ");
-    Serial.println("1 touch");
+    Serial.print("1 touch");
+    Serial.print(",");
   } 
   else {                      //터치 안됨
     Serial.print("touchSensor: ");
-    Serial.println("0 touch");
+    Serial.print("0 touch");
+    Serial.print(",");
   }
 
+<<<<<<< HEAD:arduino/forDabin/sensing/sensing.ino
   delay(1000);     
 }
+=======
+  delay(10000);     //10초
+}
+>>>>>>> 66e77f5432df531efe6b59c29c5067ff3a91534c:arduino/forDabin/sensing.ino
