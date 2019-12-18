@@ -9,7 +9,7 @@ SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 3번 핀으로 지정
 int touchSensor = 5;                  // 터치센서 5번 핀으로 지정
 
 char buf[50];
-
+4
 void setup() {
 
   Serial.begin(9600);   // 시리얼 통신을 시작, 통신 속도는 9600
@@ -67,13 +67,6 @@ void loop() {
 
   Serial.print("Flame1:");              //Flame 1
   Serial.print(a1);  
-<<<<<<< HEAD:arduino/forDabin/sensing/sensing.ino
-  Serial.println(" nm ");             
-
-  Serial.print("Flame2:");              //Flame 2
-  Serial.print(a2);  
-  Serial.println(" nm ");                                 
-=======
   Serial.print(" nm "); 
   Serial.print(",");            
 
@@ -81,7 +74,6 @@ void loop() {
   Serial.print(a2);  
   Serial.print(" nm ");
   Serial.print(",");                                 
->>>>>>> 66e77f5432df531efe6b59c29c5067ff3a91534c:arduino/forDabin/sensing.ino
 
   Serial.print("Sensor Value: ");    //VOCs
   Serial.print(sensorValue);
@@ -164,10 +156,6 @@ void loop() {
     Serial.print(",");
   }
 
-<<<<<<< HEAD:arduino/forDabin/sensing/sensing.ino
-  delay(1000);     
-}
-=======
   delay(10000);     //10초
 }
->>>>>>> 66e77f5432df531efe6b59c29c5067ff3a91534c:arduino/forDabin/sensing.ino
+
