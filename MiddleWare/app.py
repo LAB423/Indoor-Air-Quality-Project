@@ -11,7 +11,7 @@ ser.flushInput()
 while True:
     try:
         # 1. 아두이노에서 받은 시리얼값 받아서 처리하기 
-
+        
         serial = ser.readline().decode() # 1초 동안 받아들여진 시리얼값을 문자열로 인코딩 
         # print(serial) # " ppm: 1.00 ppm "
         sensor = serial.split(":")  # .split(":") 로 센서이름이랑 측정값 리스트로 담기

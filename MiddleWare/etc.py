@@ -10,6 +10,7 @@ ser.flushInput()
 while True:
     try:
         SVT = []
+        serial = ser.readline().decode()
         SVT = serial.split(",")
         sensorToList = [x.strip() for x in SVT if x.strip()]
         sensor =   [ oneSensor.split(":")  for oneSensor in sensorToList ]
