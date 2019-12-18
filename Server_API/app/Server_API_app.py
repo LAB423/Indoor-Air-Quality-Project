@@ -20,14 +20,13 @@ db = PyMongo(app, uri="mongodb://localhost:27017/test")
 def hello():
     return "Hello World!"
 
-# 우리가 확인해야할 것 
 
 # SAVE DATA TO DB
 @app.route("/add", methods=["POST"]) 
 def add():
 
-    data = request.get_json()   # json으로 전송된 데이터[formData - 형식은 "dict" ]를 불러오기 
-    ListOfDict = [ data[key] for key in data.keys() ] # dict형식은 반복문을 돌릴 수 없음으로 리스트형식으로 바꿔줌
+    data = request.get_json()   
+    ListOfDict = [ data[key] for key in data.keys() ] 
     deviceValue = ListOfDict[0].strip()   
     sensorName = ListOfDict[1].strip()   # "Huminity"
     value = ListOfDict[2].split()[0].strip()   # "33"

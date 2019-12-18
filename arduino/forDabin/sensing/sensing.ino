@@ -1,4 +1,4 @@
-#include "Adafruit_Sensor.h"
+#include <AdafruitSensor.h>
 #include <SoftwareSerial.h>        //RX, TX 통신 라이브러리 추가
 #include "DHT.h"
 #define DHTPIN 2
@@ -24,8 +24,8 @@ void loop() {
   float h = dht.readHumidity();
   float t = dht.readTemperature();
 
-  float a1 = analogRead(A0);   // flame 1
-  float a2 = analogRead(A1);   // flame 2                            
+  int a1 = analogRead(A0);   // flame 1
+  int a2 = analogRead(A1);   // flame 2                            
   
   int sensorValue;
   sensorValue=analogRead(A2);
@@ -66,11 +66,11 @@ void loop() {
 
 
   Serial.print("Flame1:");              //Flame 1
-  Serial.print((1/a1)*100);  
+  Serial.print(a1);  
   Serial.println(" nm ");             
 
   Serial.print("Flame2:");              //Flame 2
-  Serial.print((1/a2)*100);  
+  Serial.print(a2);  
   Serial.println(" nm ");                                 
 
   Serial.print("Sensor Value: ");    //VOCs

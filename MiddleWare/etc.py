@@ -38,5 +38,5 @@ while True:
         print(formData)
 
     except:
-        print("오류 발생")
+        print("Error")
         continue 
