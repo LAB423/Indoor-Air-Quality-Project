@@ -153,7 +153,7 @@ void loop() {
   else {                      //터치 안됨
     Serial.print("touchSensor: ");
     Serial.print("0 touch");
-    Serial.print(",");
+    Serial.println(",");
   }
 
   delay(10000);     //10초

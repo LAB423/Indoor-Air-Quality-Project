@@ -15,33 +15,34 @@ print(collection_list)
 ColletionOfExperiment = db["experiment"]  # experiment table 
 ColletionOfSensor =  db["sensor"]
 
-deviceName_List = ColletionOfSensor.distinct("deviceName")
-print(type(deviceName_List))
-
-sensorName_List = ColletionOfSensor.distinct("sensorname")
-print(sensorName_List)
-print(len(sensorName_List))
+deviceName_List = ColletionOfSensor.distinct("deviceName") #deviceName 필드 조회
+# print(deviceName_List)
+sensorName_List = ColletionOfSensor.distinct("sensorname") #sensorname 필드 조회
+# print(sensorName_List)
+# print(len(sensorName_List))
 unitName_List = ColletionOfSensor.distinct("unit")
-print(unitName_List)
+# print(len(unitName_List))
 
-for i in deviceName_List:
+for deviceName in deviceName_List:
 # make an API call to the MongoDB server using a Collection object
     cursor = ColletionOfSensor.find(
             
             {
             #       key :   value - 전체조회
-            "unit":  'ug/m3OpenWindowsDistance2'#deviceName_List[i]
+            "deviceName": deviceName
 
-            }, limit =3
-            ).sort("_id", -1)
+            }, limit =1
+
+            ).sort("_id", -1).distinct("sensorname")
     mongo_docs = list(cursor) 
     # mongo_docs = mongo_docs[:5]
     pprint(mongo_docs)
+    print(len(mongo_docs))
 
     docs = pandas.DataFrame(columns=[])
     for num, doc in enumerate(mongo_docs):
-        doc["_id"] = str(doc["_id"])
-        doc_id = doc["_id"]
+        doc["Temperature"] = str(doc["Temperature"])
+        doc_id = doc["Temperature"]
 
     # create a Series obj from the MongoDB dict
     series_obj = pandas.Series( doc, name=doc_id )

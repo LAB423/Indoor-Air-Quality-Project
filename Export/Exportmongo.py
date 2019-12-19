@@ -35,6 +35,7 @@ def create_list_from_json(collecion):
 
     return data_list
 
+
 if __name__ == '__main__':
     client = MongoClient("mongodb://Lab423:3240@203.255.67.238:27017")
 
