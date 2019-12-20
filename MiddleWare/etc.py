@@ -14,15 +14,11 @@ while True:
         SVT = serial.split(",")
         sensorToList = [x.strip() for x in SVT if x.strip()]
         sensor =   [ oneSensor.split(":")  for oneSensor in sensorToList ]
-        print(sensor)
 
-        sensorValue = [] 
         for Value in sensor:   
-            print(Value)
             sensorName = Value[0].strip()
             sensorValue = Value[1].strip()
 
-        print(sensorName , sensorValue)
 
         time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         import requests 
