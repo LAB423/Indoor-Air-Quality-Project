@@ -20,19 +20,19 @@ while True:
             sensorValue = Value[1].strip()
 
 
-        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        import requests 
-        API_ENDPOINT = "http://203.255.67.238:5000/add"
+            time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            import requests 
+            API_ENDPOINT = "http://203.255.67.238:5000/add"
 
-        formData = {
-            
-            'deviceName': "place1",
-            'sensorName': sensorName, 
-            'sensorValue' : sensorValue,
-            'time' : time
-        }
-        response = requests.post(url = API_ENDPOINT, json = formData) 
-        print(formData)
+            formData = {
+                
+                'deviceName': "place1",
+                'sensorName': sensorName, 
+                'sensorValue' : sensorValue,
+                'time' : time
+            }
+            response = requests.post(url = API_ENDPOINT, json = formData) 
+            print(formData)
 
     except:
         print("Error")
