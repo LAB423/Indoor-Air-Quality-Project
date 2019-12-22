@@ -9,9 +9,14 @@ SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 3번 핀으로 지정
 
 int touchSensor = 5;             // 터치센서 5번 핀으로 지정 
   
-//초음파 센서의 핀번호를 설정한다. 
+//초음파 센서1의 핀번호를 설정한다. 
 int echoPin = 12;
 int trigPin = 13;
+
+//초음파 센서2의 핀번호를 설정한다. 
+int echoPin2 = 8;
+int trigPin2 = 9;
+
 
 char buf[50];
 
@@ -25,6 +30,9 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);// trig를 출력모드로 설정, echo를 입력모드로 설정
   pinMode(echoPin, INPUT);
+
+  pinMode(trigPin2, OUTPUT);// trig를 출력모드로 설정, echo를 입력모드로 설정
+  pinMode(echoPin2, INPUT);
 }
 
 
@@ -64,16 +72,34 @@ void loop() {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  
   // echoPin 이 HIGH를 유지한 시간을 저장 한다.
   unsigned long duration = pulseIn(echoPin, HIGH); 
   // HIGH 였을 때 시간(초음파가 보냈다가 다시 들어온 시간)을 가지고 거리를 계산 한다.
-  float distance = ((float)(340 * duration) / 10000) / 2;  
+  float distance1 = ((float)(340 * duration) / 10000) / 2;  
   
-  Serial.print("OpenWindowsDistance: ");   // 창문이 열린 거리
-  Serial.print(distance);
+  Serial.print("OpenWindowsDistance1: ");   // 창문이 열린 거리
+  Serial.print(distance1);
   Serial.print(" cm");
   Serial.print(",");
+
+
+  // 초음파 2
+  // 초음파를 보낸다. 다 보내면 echo가 HIGH 상태로 대기하게 된다.
+  digitalWrite(trigPin2, LOW);
+  digitalWrite(echoPin2, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin2, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin2, LOW);
+  
+  // echoPin 이 HIGH를 유지한 시간을 저장 한다.
+  unsigned long duration2 = pulseIn(echoPin2, HIGH); 
+  // HIGH 였을 때 시간(초음파가 보냈다가 다시 들어온 시간)을 가지고 거리를 계산 한다.
+  float distance2 = ((float)(340 * duration2) / 10000) / 2;  
+  
+  Serial.print("OpenWindowsDistance2: ");   // 창문이 열린 거리
+  Serial.print(distance2);
+  Serial.println(" cm");
 
   if (isnan(h) || isnan(t)) {
     Serial.println("Failed to read from DHT sensor!");

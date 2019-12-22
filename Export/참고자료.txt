@@ -12,31 +12,10 @@ https://www.fun-coding.org/mongodb_advanced2.html
 mongodb 센서데이터 처리  - 몽고db 홈페이지
 https://www.mongodb.com/presentations/mongodb-time-series-data-part-1-setting-stage-sensor-management
 
+원하는 시간마다 함수 실행하기 
+https://niceman.tistory.com/144
 
-현재 짠 코드  #몽고디비에서 json으로 데이터 출력
-
-from pymongo import MongoClient
-import json
-from pprint import pprint
-from datetime import datetime
-
-client = MongoClient("mongodb://Lab423:3240@203.255.67.238:27017")
-
-db = client["test"] 
-collection_list = db.list_collection_names()
-print(collection_list)
-
-
-ColletionOfExperiment = db["experiment"]  # experiment table 
-ColletionOfSensor =  db["sensor"]
-
-
-# results = ColletionOfSensor.find()  #전체데이터조회
-
-# for result in results:
-#     print(result)
-
-# 하루날짜로 데이터 수집하기 
+하루날짜로 데이터 수집하기 
 #https://dba.stackexchange.com/questions/112179/date-range-query-for-past-24-hour-in-mongo-shell
 
 

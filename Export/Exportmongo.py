@@ -14,7 +14,7 @@ db = PyMongo(app, uri="mongodb://localhost:27017/test")
 
 def get_list_of_json_files():
     
-    list_of_files = os.listdir('descriptions')  # creates list of all the files in the folder
+    list_of_files = os.listdir('C://Users//user//Desktop//Indoor-Air-Quality-Project//descriptions')  # creates list of all the files in the folder
     return list_of_files
 
 
@@ -46,6 +46,9 @@ if __name__ == '__main__':
     ColletionOfExperiment = db["experiment"]  # experiment table 
     ColletionOfSensor =  db["sensor"]
 
+
+
+    get_list_of_json_files()
     # results = ColletionOfSensor.find({},limit=3)  #전체데이터조회
     # for result in results:
     #     pprint(result)
