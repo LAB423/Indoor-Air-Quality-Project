@@ -9,7 +9,6 @@ SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 3번 핀으로 지정
 int touchSensor = 5;                  // 터치센서 5번 핀으로 지정
 
 char buf[50];
-4
 void setup() {
 
   Serial.begin(9600);   // 시리얼 통신을 시작, 통신 속도는 9600

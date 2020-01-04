@@ -5,6 +5,14 @@
 #define DHTTYPE DHT22 
 DHT dht(DHTPIN, DHTTYPE);
 
+#include <Wire.h>
+#include "SparkFunCCS811.h" //Click here to get the library: http://librarymanager/All#SparkFun_CCS811
+
+#define CCS811_ADDR 0x5B //Default I2C Address
+//#define CCS811_ADDR 0x5A //Alternate I2C Address
+CCS811 mySensor(CCS811_ADDR);
+
+
 SoftwareSerial Serial1(4,3);          //TX ,RX 핀을 4, 3번 핀으로 지정
 
 int touchSensor = 5;             // 터치센서 5번 핀으로 지정 
@@ -25,6 +33,7 @@ void setup() {
   Serial.begin(9600);   // 시리얼 통신을 시작, 통신 속도는 9600
   dht.begin();
   Serial1.begin(9600);        //RX, TX 통신 시작
+  Wire.begin(); //Inialize I2C Harware
   
   pinMode(touchSensor, INPUT);  //touchsenseor 통신 시작
 
@@ -33,6 +42,15 @@ void setup() {
 
   pinMode(trigPin2, OUTPUT);// trig를 출력모드로 설정, echo를 입력모드로 설정
   pinMode(echoPin2, INPUT);
+
+  //It is recommended to check return status on .begin(), but it is not
+  //required.
+  CCS811Core::status returnCode = mySensor.begin();
+  if (returnCode != CCS811Core::SENSOR_SUCCESS)
+  {
+    Serial.println(".begin() returned with an error.");
+    while (1); //Hang if there was a problem.
+  }
 }
 
 
@@ -49,9 +67,9 @@ void loop() {
 
   int touchValue = digitalRead(touchSensor); // touchsensor pin number = digit 2;
   
-  float Vol, ppm;
-  Vol=sensorValue*4.95/1023;
-  ppm = map(Vol, 0, 4.95, 1, 50); // Concentration Range: 1~50 ppm 
+  //float Vol, ppm;
+  //Vol=sensorValue*4.95/1023;
+  //ppm = map(Vol, 0, 4.95, 1, 50); // Concentration Range: 1~50 ppm 
   
   int count = 0;
   unsigned char c;
@@ -133,15 +151,37 @@ void loop() {
   Serial.print(" voc ");
   Serial.print(",");
 
-  Serial.print("Vol: ");
-  Serial.print(Vol);
-  Serial.print(" vol ");
-  Serial.print(",");
+  //Serial.print("Vol: ");
+  //Serial.print(Vol);
+  //Serial.print(" vol ");
+  //Serial.print(",");
 
-  Serial.print("ppm: ");
-  Serial.print(ppm);
-  Serial.print(" ppm ");
-  Serial.print(",");
+  //Serial.print("ppm: ");
+  //Serial.print(ppm);
+  //Serial.print(" ppm ");
+  //Serial.print(",");
+
+  //Check to see if data is ready with .dataAvailable()
+  if (mySensor.dataAvailable())
+  {
+    //If so, have the sensor read and calculate the results.
+    //Get them later
+    mySensor.readAlgorithmResults();
+
+    Serial.print("TVOC: ");
+    Serial.print(mySensor.getTVOC());
+    Serial.print(" ppb ");
+    Serial.print(",");
+
+    Serial.print("CO2: ");
+    Serial.print(mySensor.getCO2());
+    Serial.print(" ppm ");
+    Serial.print(",");
+
+    //Serial.print(millis());
+    //Serial.print(",");
+  }
+
     
 
 
