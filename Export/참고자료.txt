@@ -18,4 +18,6 @@ https://niceman.tistory.com/144
 하루날짜로 데이터 수집하기 
 #https://dba.stackexchange.com/questions/112179/date-range-query-for-past-24-hour-in-mongo-shell
 
+# mongodb 기초
+https://www.fun-coding.org/mongodb_basic5.html
 
